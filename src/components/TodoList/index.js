@@ -41,6 +41,7 @@ export default function TodoList() {
         {todoList.map((todo) => (
           <Todo
             key={todo.id}
+            todoId = {todo.id}
             name={todo.name}
             prioriry={todo.priority}
             completed={todo.completed}
