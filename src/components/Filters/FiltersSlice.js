@@ -1,29 +1,23 @@
-const initState = {
-  search: "",
-  status: "All",
-  priority: [],
-};
+import { createSlice } from "@reduxjs/toolkit";
 
-const filtersReducer = (state = initState, action) => {
-  switch (action.type) {
-    case "filter/search":
-      return {
-        ...state,
-        search: action.payload,
-      };
-    case "filter/status":
-      return {
-        ...state,
-        status: action.payload,
-      };
-    case "filter/priorities":
-      return {
-        ...state,
-        priority: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+const filtersSlice = createSlice({
+  name: "filter",
+  initialState: {
+    search: "",
+    status: "All",
+    priority: [],
+  },
+  reducers: {
+    search: (state, action) => {
+      state.search = action.payload;
+    },
+    status: (state, action) => {
+      state.status = action.payload;
+    },
+    priorities: (state, action) => {
+      state.priority = action.payload;
+    },
+  },
+});
 
-export default filtersReducer;
+export default filtersSlice;

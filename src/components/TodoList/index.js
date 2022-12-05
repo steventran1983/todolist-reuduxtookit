@@ -1,10 +1,10 @@
 import { Col, Row, Input, Button, Select, Tag } from "antd";
 import Todo from "../Todo";
 import { useDispatch, useSelector } from "react-redux";
-import { createAddTodo } from "../../redux/actions";
 import { useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { todosRemainSelector } from "../../redux/selectors";
+import todoListSlice from "./todoListSlice";
 
 export default function TodoList() {
   const todoList = useSelector(todosRemainSelector);
@@ -21,7 +21,7 @@ export default function TodoList() {
       priority: priority,
       completed: false,
     };
-    dispatch(createAddTodo(data));
+    dispatch(todoListSlice.actions.addTodo(data));
     setUserInput("");
     setPriority("Medium");
     inputRef.current.focus();
@@ -41,7 +41,7 @@ export default function TodoList() {
         {todoList.map((todo) => (
           <Todo
             key={todo.id}
-            todoId = {todo.id}
+            todoId={todo.id}
             name={todo.name}
             prioriry={todo.priority}
             completed={todo.completed}
