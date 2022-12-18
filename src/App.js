@@ -2,10 +2,22 @@ import { Typography, Divider } from "antd";
 import "./App.css";
 import TodoList from "./components/TodoList";
 import Filters from "./components/Filters";
+import fakeApi from "./components/fakeApi/fakeApi";
+import { useEffect } from "react";
 
 const { Title } = Typography;
 
 function App() {
+  const fetchData = async () => {
+    const res = await fetch("/api/todos");
+    const data = res.json();
+    console.log(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div
       style={{

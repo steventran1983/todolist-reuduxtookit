@@ -12,10 +12,14 @@ export default function Todo({ name, prioriry, completed, todoId }) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(completed);
 
-  const toggleCheckbox = () => {
-    setChecked(!checked);
-    dispatch(todoListSlice.actions.toggleChange(todoId));
-  };
+  // const toggleCheckbox = () => {
+  //   setChecked(!checked);
+  //   dispatch(todoListSlice.actions.toggleChange(todoId));
+  // };
+
+  const toggleCheckbox = async () => {
+    const toggle = await fetch('/api/')
+  }
 
   return (
     <Row
