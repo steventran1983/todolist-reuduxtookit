@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { todosRemainSelector } from "../../redux/selectors";
-import todoListSlice from "./todoListSlice";
+import todoListSlice, { addTodo, addTodo2 } from "./todoListSlice";
 import fakeApi from "../fakeApi/fakeApi";
 
 export default function TodoList() {
@@ -27,25 +27,37 @@ export default function TodoList() {
   //   inputRef.current.focus();
   // };
 
-  const handleAddButtonClick = async () => {
-    try {
-      const res = await fetch("/api/todo", {
-        method: "POST",
-        body: JSON.stringify({
-          id: uuidv4(),
-          name: userInput,
-          priority: priority,
-          completed: false,
-        }),
-      });
-      const res_2 = await fetch("/api/todos");
-      const data_2 = res_2.json();
-      console.log(data_2);
-      setUserInput("");
-      inputRef.current.focus();
-    } catch (error) {
-      console.log(error);
-    }
+  // const handleAddButtonClick = async () => {
+  //   try {
+  //     const res = await fetch("/api/todo", {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         id: uuidv4(),
+  //         name: userInput,
+  //         priority: priority,
+  //         completed: false,
+  //       }),
+  //     });
+  //     const res_2 = await fetch("/api/todos");
+  //     const data_2 = res_2.json();
+  //     console.log(data_2);
+  //     setUserInput("");
+  //     inputRef.current.focus();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const handleAddButtonClick = () => {
+    const newTodo = {
+      id: uuidv4(),
+      name: userInput,
+      priority: priority,
+      completed: false,
+    };
+    dispatch(addTodo2(newTodo));
+    setUserInput("");
+    inputRef.current.focus();
   };
 
   const handleInput = (e) => {

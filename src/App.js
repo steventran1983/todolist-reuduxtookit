@@ -4,19 +4,19 @@ import TodoList from "./components/TodoList";
 import Filters from "./components/Filters";
 import fakeApi from "./components/fakeApi/fakeApi";
 import { useEffect } from "react";
-
+import { fecthTodos } from "./components/TodoList/todoListSlice";
+import { useDispatch } from "react-redux";
 const { Title } = Typography;
 
 function App() {
-  const fetchData = async () => {
-    const res = await fetch("/api/todos");
-    const data = res.json();
-    console.log(data);
-  };
-
+  const dispatch = useDispatch()
   useEffect(() => {
-    fetchData();
-  }, []);
+    dispatch(fecthTodos())
+  },[])
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   return (
     <div
